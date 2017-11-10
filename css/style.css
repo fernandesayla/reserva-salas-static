@@ -1,0 +1,31 @@
+* {
+
+  margin: 0px;
+  padding: 0px;
+}
+
+.cabecalho{
+  background-color: #3b89da;
+  color: #fff;
+  padding: 0 10%;
+}
+
+.container{
+  padding: 0 10%;
+}
+
+
+
+
+  /* .cartao:nth-child(n1+4){
+    margin-left: 0;
+
+  }
+*/
+
+
+
+
+
+
+}

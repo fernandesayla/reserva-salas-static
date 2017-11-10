@@ -1,0 +1,54 @@
+.opcoesDaPagina {
+	display: inline-block;
+	vertical-align: middle;
+
+	font-size: 1rem;
+}
+
+.opcoesDaPagina-opcao {
+	font-size: 1em;
+	vertical-align: middle;
+	font-family: "Lucida Grande", "Helvetica", "Arial", sans-serif;
+}
+
+.opcoesDaPagina-opcao + .opcoesDaPagina-opcao {
+	margin-left: 1em;
+}
+
+.opcoesDaPagina-botao {
+	padding: .5em;
+	max-width: 4.5em;
+	border: none;
+	background: rgba(0,0,0,.25);
+	color: white;
+}
+
+.opcoesDaPagina-opcao#busca {
+	border: none;
+	padding: .2em;
+}
+
+
+.opcoesDaPagina-botao#mudaLayout {
+	border: none;
+	background: rgba(0,0,0,0);
+	color: white;
+	background-size: cover;
+	background-repeat: no-repeat;
+	flex: 0 0 auto;
+	height: 48px;
+	width: 48px;
+	background-image: url(../img/blocos_branco.svg);
+}
+opcoesDaPagina-botao:hover{
+	background: rgba(0,0,0,0);
+
+}
+.opcoesDaPagina-opcao#busca {
+	border: none;
+	padding: .2em;
+}
+.icon--linha#mudaLayout{
+	background-image: url(../img/linhas_branco.svg);
+
+}
