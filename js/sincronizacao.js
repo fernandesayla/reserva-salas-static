@@ -5,8 +5,19 @@
   function(resposta){
     resposta.reservas.forEach(function(cartaoAtual){
 
-      console.log(cartaoAtual)
-    controladorDeCartao.adicionaCartao(cartaoAtual.sala, cartaoAtual.id)
+
+        controladorDeCartao.adicionaCartao(cartaoAtual.sala, cartaoAtual.id)
+    })
+  })
+
+
+  $.getJSON('http://localhost:3000/salas/ + 1',
+  function(resposta){
+    resposta.salas.forEach(function(sala){
+
+     
+      controladorDeSalas.adicionaSala(sala.sala_id , sala.sala)
+      //  controladorDeCartao.adicionaCartao(cartaoAtual.sala, cartaoAtual.id)
     })
   })
 
