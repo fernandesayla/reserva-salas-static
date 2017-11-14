@@ -1,17 +1,23 @@
 var calendarioSalas=(
 
 
-  function caledario(id) {
+  function caledario(id, eventos) {
+    console.log(eventos);
   'use strict'
+
+
+
+
+
    var initialLocaleCode = 'pt-BR';
 
 
 
      $('#calendar_'+id).fullCalendar({
        header: {
-         left: 'prev,next today',
+         right: '',
          center: 'title',
-         right: 'month,agendaWeek,agendaDay'
+         left: ''
        },
        height: 700,
        businessHours: {
@@ -26,85 +32,58 @@ var calendarioSalas=(
 
        maxTime: '20:00',
        defaultView: 'agendaDay',
-       defaultDate: '2017-10-12',
+
        navLinks: true, // can click day/week names to navigate views
        selectable: true,
        selectHelper: true,
 
        timeFormat: 'H(:mm)',
          locale: 'pt-br',
-       select: function(start, end) {
-         var title = prompt('Event Title:');
-         var eventData;
-         if (title) {
-           eventData = {
-             title: title,
-             start: start,
+       select: function(start, end, jsEvent, view ) {
 
-             end: end
-           };
-           $('#calendar_1').fullCalendar('renderEvent', eventData, true); // stick? = true
-         }
-         $('#calendar_1').fullCalendar('unselect');
-       },
+
+
+                      $('[name=start]', '#calendarForm').val(start);
+                      $('[name=end]', '#calendarForm').val(end);
+
+
+
+
+                    $('#eventUrl').attr('href',event.url);
+                    $('#calendarModal').modal();
+
+
+ },
        editable: true,
        eventLimit: true, // allow "more" link when too many events
+       eventClick: function(calEvent, jsEvent, view) {
+
+       /*alert('Event: ' + calEvent.title);
+       alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+       alert('View: ' + view.name);
+*/
+       $('#modalTitle').html(calEvent.title);
+    //     $('#modalBody').html(calEvent.title + ' - ' + calEvent.start + ' - ' + calEvent.end);
+      //   $('#modalBody').html(calEvent.title + ' - ' + calEvent.start + ' - ' + calEvent.end);
+      //   $('#modalBody').html(calEvent.title + ' - ' + calEvent.start + ' - ' + calEvent.end);
+
+           popula('#calendarForm', calEvent)
+           $('#eventUrl').attr('href',event.url);
+           $('#calendarModal').modal();
+
+
+           function popula(frm, data) {
+             $.each(data, function(key, value){
+               $('[name='+key+']', frm).val(value);
+             });
+           }
+       // change the border color just for fun
+       //$(this).css('border-color', 'red');
+
+   },
        events: [
-         {
-           title: 'All Day Event',
-           start: '2017-10-01'
-         },
-         {
-           title: 'Long Event',
-           start: '2017-10-07',
-           end: '2017-10-10'
-         },
-         {
-           id: 999,
-           title: 'Repeating Event',
-           start: '2017-10-09T16:00:00'
-         },
-         {
-           id: 999,
-           title: 'Repeating Event',
-           start: '2017-10-16T16:00:00'
-         },
-         {
-           title: 'Conference',
-           start: '2017-10-11',
-           end: '2017-10-13'
-         },
-         {
-           title: 'Meeting',
-           start: '2017-10-12T10:30:00',
-           end: '2017-10-12T12:30:00'
-         },
-         {
-           title: 'Lunch',
-           start: '2017-10-12T12:00:00'
-         },
-         {
-           title: 'Meeting',
-           start: '2017-10-12T14:30:00'
-         },
-         {
-           title: 'Happy Hour',
-           start: '2017-10-12T17:30:00'
-         },
-         {
-           title: 'Dinner',
-           start: '2017-10-12T20:00:00'
-         },
-         {
-           title: 'Birthday Party',
-           start: '2017-10-13T07:00:00'
-         },
-         {
-           title: 'Click for Google',
-           url: 'http://google.com/',
-           start: '2017-10-28'
-         }
-       ]
+eventos
+          ]
      });
 
 
@@ -117,4 +96,9 @@ var calendarioSalas=(
 
   }
 
-})()
+}
+
+
+
+
+)()

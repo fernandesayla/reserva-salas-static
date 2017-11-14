@@ -4,17 +4,47 @@ var controladorDeSalas=(function() {
 
   var contador = $('.cartao').length
 
+    var contadorCidades = $('.pills-tab').length
+  function adicionaCidades(nome, cidade_id){
 
- function adicionaSala(id, nome){
-   contador++
+    contadorCidades ++
 
+
+        var sala = $('<div>').addClass('tab-pane fade show').attr('id','pills'+cidade_id).attr('role','tabpanel')
+
+        if (cidade_id == 1 ) {
+          sala.addClass('active')
+        }
+         var conteudo = $('<div>').addClass('salas').attr('id','salas'+cidade_id)
+
+
+         sala.append(conteudo).prependTo('#pills-tabContent')
+
+    var cidade = $('<li>').addClass('nav-item nav-cidades')
+
+    var titulo = $('<a>').append(nome).addClass('nav-link').attr('id','pills-home-tab'+cidade_id).attr('data-toggle','pill').attr('role','tab').attr('aria-selected','true').attr('href','#pills'+cidade_id)
+    if (cidade_id == 1 ) {
+      titulo.addClass('active')
+    }
+    cidade.append(titulo).prependTo('#pills-tab')
+
+
+
+  }
+
+ function adicionaSala(id, nome, cidade, cidade_id, eventos){
+
+   console.log(eventos);
    var sala = $('<div>').addClass('sala')
     var titulo = $('<h2>').append(nome)
     var calendario = $('<div>').addClass('sala').attr('id','calendar_'+id)
 
-    sala.append(titulo).append(calendario).prependTo('.salas')
+    sala.append(titulo).append(calendario).prependTo('#salas'+ cidade_id)
+    var events = {
+      'events' : eventos
+    }
 
-   calendarioSalas.caledario(id)
+   calendarioSalas.caledario(id, eventos)
 
  }
 
@@ -94,6 +124,7 @@ var controladorDeSalas=(function() {
 
   return {
     adicionaSala:adicionaSala,
+    adicionaCidades:adicionaCidades,
     idUltimoCartao:contador,
 
   }

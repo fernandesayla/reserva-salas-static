@@ -5,16 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Agenda de Salas</title>
+
+  <link	rel="stylesheet"	 media="print"  href="css/fullcalendar.print.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/mural.css">
-  <link rel="stylesheet" href="css/cartao.css">
+
   <link	rel="stylesheet" href="css/cabecalho.css">
   <link	rel="stylesheet" href="css/opcoesDaPagina.css">
-  <link	rel="stylesheet" href="css/opcoesDoCartao.css">
-  <link	rel="stylesheet" href="css/novoCartao.css">
-  <link	rel="stylesheet"	href="css/botaoSync.css">
+
   <link	rel="stylesheet"  href="css/fullcalendar.min.css">
-  <link	rel="stylesheet"	 media="print"  href="css/fullcalendar.print.css">
   <style type='text/css'>
 
   	#calendar_1 {
@@ -24,14 +23,32 @@
   	}
     .salas{
       display: flex;
-  
+      justify-content:space-around;
+      flex-wrap:wrap;
+
     }
   	.sala {
   		width: 300px;
       padding-top: 16px;
-
+      font-size: 0.8rem !important;
 
   	}
+    .h2, h2 {
+    font-size: 1rem;
+    }
+    .nav-pills{
+        width: 100%;
+        margin-top: 5px;
+    }
+    .nav-cidades{
+    width: 50%;
+    text-align: center;
+    }
+    .salas h2{
+      text-align: center;
+
+
+    }
 
   </style>
   <script	src="js/lib/jquery.js"></script>
@@ -44,54 +61,147 @@
 
 </head>
 <body>
-  <header	class="cabecalho container">
-    <h1	class="cabecalho-logo">Creep</h1>
-    <div class="busca">
-      <input	type="search"	id="busca"	placeholder="Busca" class="inputBusca">
-    </div>
-
-    <button	id="mudaLayout" class="opcoesDaPagina opcoesDaPagina-opcao	opcoesDaPagina-botao">
-    </button>
-
-    <button	id="ajuda"	class="opcoesDaPagina-opcao
-    opcoesDaPagina-botao">?</button>
+  <header	class="cabecalho navbar navbar-expand-md">
+    <img src="img/bancodobrasil.png" class="float-left">
 
 
 
-    <button id="sync" class="opcoesDaPagina-opcao opcoesDaPagina-botao botaoSync"><svg height="1em" viewBox="0 0 384 384">
-      <title>sincronizar</title>
-      <path d="M327.731 172.734c5.938 40.859-6.531 83.891-38.406 115.297-47.094 46.469-119.75 52.188-173.188 17.281l37.438-36.5-137.595-19.188 19.203 134.375 42.015-40.25c75.453 55.625 182.469 50.375 251.032-17.281 39.75-39.219 57.875-91.281 55.625-142.656l-56.125-11.078zM94.73 96.031c47.078-46.469 119.719-52.219 173.156-17.281l-37.5 36.484 137.594 19.203-19.188-134.438-41.969 40.344c-75.469-55.672-182.453-50.359-251.031 17.281-39.75 39.203-57.859 91.266-55.625 142.625l56.125 11.063c-5.938-40.875 6.563-83.859 38.438-115.281z"></path>
-    </svg></button>
+      <h1 class="cabecalho-logo navbar-brand" >Reserva de Salas</h1>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse"  id="navbarsExample04">
+         <ul class="navbar-nav mr-auto">
+
+
+         </ul>
+
+       </div>
+
+
+
+
 
   </header>
 
-  <section class="salas container">
+  <section class="salas container-fluid">
+
+    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist"  >
+
+
+    </ul>
+    <div class="">
+        <button type="button" name="button"  class="btn" id="buttonToday" > Hoje</button>
+        <button type="button" name="button" class="btn" id="buttonPrev" >Anterior</button>
+      <button type="button" name="button"  class="btn" id="buttonNext">Próximo</button>
+
+
+    </div>
+
+    <div class="tab-content container-fluid" id="pills-tabContent">
+
+
+    </div>
+
+
+
+<div id="calendarModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 id="modalTitle" class="modal-title" id="myLargeModalLabel">Large modal</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div id="modalBody" class="modal-body">
+        <form id="calendarForm">
+          <div class="form-group">
+            <label for="exampleInputTitle">Assunto</label>
+            <input type="text" name="title"  class="form-control"   aria-describedby="emailHelp" placeholder="Enter email">
+
+          </div>
+          <div class="form-group">
+            <label for="exampleInputTitle">Início</label>
+            <input type="text" name="start"  class="form-control"   aria-describedby="emailHelp" placeholder="Enter email">
+
+          </div>
+          <div class="form-group">
+            <label for="exampleInputTitle">Fim</label>
+            <input type="text" name="end"  class="form-control"   aria-describedby="emailHelp" placeholder="Enter email">
+
+          </div>
+
+          <div class="form-check">
+            <label class="form-check-label">
+              <input  type="checkbox" class="form-check-input">
+              Todo o Dia
+            </label>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
   </section>
 
 
-  <form class="novoCartao" >
-    <textarea class="novoCartao-conteudo" rows="8" cols="80"></textarea>
-    <button type="submit" name="button" class="novoCartao-salvar">Salvar</button>
-
-  </form>
-
-  <section class="mural container">
-
-  </section>
 
   <script src="js/controladorDeSalas.js" ></script>
 
   <script src="js/controladorDeCartao.js" ></script>
   <script src="js/removerCartao.js" ></script>
-  <script src="js/mudaLayout.js" ></script>
+
   <script src="js/novoCartao.js" ></script>
   <script src="js/principal.js" ></script>
   <script src="js/ajuda.js" ></script>
   <script src="js/sincronizacao.js" ></script>
 
+  <script type="text/javascript">
+  $(document).ready(function() {
 
+    $( "#buttonPrev" ).click(function() {
+      $('#calendar_1').fullCalendar('prev');
+      $('#calendar_2').fullCalendar('prev');
+      $('#calendar_3').fullCalendar('prev');
+      $('#calendar_4').fullCalendar('prev');
+      $('#calendar_5').fullCalendar('prev');
+      $('#calendar_7').fullCalendar('prev');
+      $('#calendar_6').fullCalendar('prev');
+
+
+  });
+  $( "#buttonToday" ).click(function() {
+    $('#calendar_1').fullCalendar('today');
+    $('#calendar_2').fullCalendar('today');
+    $('#calendar_3').fullCalendar('today');
+    $('#calendar_4').fullCalendar('today');
+    $('#calendar_5').fullCalendar('today');
+    $('#calendar_7').fullCalendar('today');
+    $('#calendar_6').fullCalendar('today');
+
+
+});
+
+  $( "#buttonNext" ).click(function() {
+    $('#calendar_1').fullCalendar('next');
+    $('#calendar_2').fullCalendar('next');
+    $('#calendar_3').fullCalendar('next');
+    $('#calendar_4').fullCalendar('next');
+    $('#calendar_5').fullCalendar('next');
+    $('#calendar_7').fullCalendar('next');
+    $('#calendar_6').fullCalendar('next');
+
+});
+
+});
+  </script>
 
   <script src='js/lib/fullcalendar.min.js'></script>
   <script src='js/lib/locale-all.js'></script>
@@ -99,7 +209,8 @@
 
   <script src='js/calendarioSalas.js'></script>
 
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
 
 </body>

@@ -3,18 +3,57 @@
 
   $.getJSON('http://localhost:3000/reservas',
   function(resposta){
-    resposta.sala_id.forEach(
-
-        function(sala_id){
 
 
-                controladorDeSalas.adicionaSala(sala_id.id , sala_id.nome)
-        //controladorDeCartao.adicionaCartao(cartaoAtual.sala, cartaoAtual.id)
-        })
+    resposta.cidades.forEach(function(cidade){
+
+
+     controladorDeSalas.adicionaCidades(cidade.cidade, cidade.cidade_id)
+
+
+
+      //  controladorDeCartao.adicionaCartao(cartaoAtual.sala, cartaoAtual.id)
+    })
+
+    resposta.salas.forEach(function(sala){
+      var evento = {}
+      var events = [];
+
+      resposta.reservas.forEach(function(reservas){
+
+
+
+        if (reservas.SALA_ID == sala.sala_id){
+          evento =   {
+              title:reservas.ASSUNTO,
+                id:reservas.ID,
+              start:reservas.START,
+              end:reservas.END
+
+          };
+           events.push(evento);
+
+
+        }
+
+      })
+
+
+      controladorDeSalas.adicionaSala(sala.sala_id , sala.sala, sala.cidade,  sala.cidade_id , events)
+
+
+      //  controladorDeCartao.adicionaCartao(cartaoAtual.sala, cartaoAtual.id)
+    })
+
+
+
   })
 
 
-  $.getJSON('http://localhost:3000/salas/ + 1',
+
+
+
+/*  $.getJSON('http://localhost:3000/salas/ + 1',
   function(resposta){
     resposta.salas.forEach(function(sala){
 
@@ -24,7 +63,7 @@
 
       //  controladorDeCartao.adicionaCartao(cartaoAtual.sala, cartaoAtual.id)
     })
-  })
+  })*/
 
   $(document).on('precisaSincronizar', function(){
     var listaCartao = []

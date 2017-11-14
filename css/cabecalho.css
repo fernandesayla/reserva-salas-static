@@ -5,22 +5,22 @@
 	text-align: center;
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-between;
+	color: #fff;
 	align-items: center;
 	align-content: center;
 }
 
 .cabecalho-logo {
-	font-size: 2em;
+
 	margin-bottom: .3em;
-	font-family: "Verdana", "Helvetica", sans-serif;
-	color: rgba(255,255,255,.7);
+
+	color: #fff;
 	display: inline-block;
 	vertical-align: middle;
-	margin-right: 1em;
-	margin-bottom: 0;
-}
 
+ 	margin-left: 1em;
+}
+ 
 .busca {
 	background: rgba(0,0,0,0.04);
 	border: 1px solid rgba(0,0,0,0);
