@@ -8,10 +8,13 @@ var controladorDeSalas=(function() {
  function adicionaSala(id, nome){
    contador++
 
-   var sala = $('<div>').addClass('sala').attr('id','calendar_'+id)
-   sala.prependTo('.mural')
+   var sala = $('<div>').addClass('sala')
+    var titulo = $('<h2>').append(nome)
+    var calendario = $('<div>').addClass('sala').attr('id','calendar_'+id)
 
-   calendarioSalas.caledario()
+    sala.append(titulo).append(calendario).prependTo('.salas')
+
+   calendarioSalas.caledario(id)
 
  }
 

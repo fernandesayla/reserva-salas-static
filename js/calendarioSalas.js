@@ -1,13 +1,13 @@
 var calendarioSalas=(
 
 
-  function caledario() {
+  function caledario(id) {
   'use strict'
    var initialLocaleCode = 'pt-BR';
 
 
 
-     $('#calendar_1').fullCalendar({
+     $('#calendar_'+id).fullCalendar({
        header: {
          left: 'prev,next today',
          center: 'title',
@@ -106,6 +106,11 @@ var calendarioSalas=(
          }
        ]
      });
+
+
+
+
+
 
   return {
       caledario:caledario

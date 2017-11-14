@@ -3,11 +3,14 @@
 
   $.getJSON('http://localhost:3000/reservas',
   function(resposta){
-    resposta.reservas.forEach(function(cartaoAtual){
+    resposta.sala_id.forEach(
+
+        function(sala_id){
 
 
-        controladorDeCartao.adicionaCartao(cartaoAtual.sala, cartaoAtual.id)
-    })
+                controladorDeSalas.adicionaSala(sala_id.id , sala_id.nome)
+        //controladorDeCartao.adicionaCartao(cartaoAtual.sala, cartaoAtual.id)
+        })
   })
 
 
@@ -15,8 +18,10 @@
   function(resposta){
     resposta.salas.forEach(function(sala){
 
-     
+
       controladorDeSalas.adicionaSala(sala.sala_id , sala.sala)
+
+
       //  controladorDeCartao.adicionaCartao(cartaoAtual.sala, cartaoAtual.id)
     })
   })
