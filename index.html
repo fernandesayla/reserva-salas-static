@@ -117,7 +117,7 @@
         </button>
       </div>
       <div id="modalBody" class="modal-body">
-        <form id="calendarForm">
+        <form id="calendarForm" onsubmit="reservaController.adiciona(event)">
           <div class="form-group">
             <label for="exampleInputTitle">Assunto</label>
             <input type="text" name="title"  class="form-control"   aria-describedby="emailHelp" placeholder="Enter email">
@@ -140,7 +140,8 @@
               Todo o Dia
             </label>
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+
+          <button type="submit"   class="btn btn-primary">Submit</button>
         </form>
       </div>
     </div>
@@ -151,7 +152,10 @@
 
   </section>
 
-
+  <script src="js/app/controllers/ReservaController.js"></script>
+  <script>
+             let reservaController = new ReservaController();
+         </script>
 
   <script src="js/controladorDeSalas.js" ></script>
 

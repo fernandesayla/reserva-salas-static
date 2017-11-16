@@ -23,12 +23,12 @@
 
 
 
-        if (reservas.SALA_ID == sala.sala_id){
+        if (reservas.sala_id == sala.sala_id){
           evento =   {
-              title:reservas.ASSUNTO,
-                id:reservas.ID,
-              start:reservas.START,
-              end:reservas.END
+              title:reservas.title,
+                id:reservas.id,
+              start:reservas.start,
+              end:reservas.end
 
           };
            events.push(evento);
@@ -80,7 +80,7 @@
 
 
 
-    var mural={reservas: listaReserva,
+    var mural={cartao: listaCartao,
       usuario:'fernandes.ayla@gmail.com'}
 
       $.ajax({
@@ -99,6 +99,33 @@
     })
     $("#sync").click(function(){
       $(document).trigger('precisaSincronizar')
+
+    })
+
+  $(document).on('sincroniza', function(event,  param1){
+
+  //  console.log(JSON.stringify(param1));
+
+
+      var mural={reservas: param1,
+      usuario:'fernandes.ayla@gmail.com'}
+
+      $.ajax({
+        data:mural,
+        url:'http://localhost:3000/reservas/salvar',
+        method:'POST',
+        success:function(resposta){
+          console.log('Rolou!', resposta);
+        }
+        ,error:function(){
+
+          console.log('Deu ruim');
+        }
+      })
+
+    })
+    $("#sync").click(function(){
+      $(document).trigger('sincroniza')
 
     })
   })()
