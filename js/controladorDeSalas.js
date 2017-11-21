@@ -44,7 +44,7 @@ var controladorDeSalas=(function() {
       'events' : eventos
     }
 
-   calendarioSalas.caledario(id, eventos)
+   calendarioSalas.caledario(id,nome,cidade,eventos)
 
  }
 

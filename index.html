@@ -16,44 +16,44 @@
   <link	rel="stylesheet"  href="css/fullcalendar.min.css">
   <style type='text/css'>
 
-  	#calendar_1 {
+  #calendar_1 {
 
-  		font-size: 14px;
-  		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
-  	}
-    .salas{
-      display: flex;
-      justify-content:space-around;
-      flex-wrap:wrap;
+    font-size: 14px;
+    font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+  }
+  .salas{
+    display: flex;
+    justify-content:space-around;
+    flex-wrap:wrap;
 
-    }
-  	.sala {
-  		width: 300px;
-      padding-top: 16px;
-      font-size: 0.8rem !important;
+  }
+  .sala {
+    width: 300px;
+    padding-top: 16px;
+    font-size: 0.8rem !important;
 
-  	}
-    .h2, h2 {
+  }
+  .h2, h2 {
     font-size: 1rem;
-    }
-    .nav-pills{
-        width: 100%;
-        margin-top: 5px;
-    }
-    .nav-cidades{
+  }
+  .nav-pills{
+    width: 100%;
+    margin-top: 5px;
+  }
+  .nav-cidades{
     width: 50%;
     text-align: center;
-    }
-    .salas h2{
-      text-align: center;
+  }
+  .salas h2{
+    text-align: center;
 
 
-    }
+  }
 
   </style>
   <script	src="js/lib/jquery.js"></script>
-<script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-<script src='js/lib/momentjs.js'></script>
+  <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  <script src='js/lib/momentjs.js'></script>
 
 
 
@@ -66,18 +66,18 @@
 
 
 
-      <h1 class="cabecalho-logo navbar-brand" >Reserva de Salas</h1>
+    <h1 class="cabecalho-logo navbar-brand" >Reserva de Salas</h1>
 
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse"  id="navbarsExample04">
-         <ul class="navbar-nav mr-auto">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse"  id="navbarsExample04">
+      <ul class="navbar-nav mr-auto">
 
 
-         </ul>
+      </ul>
 
-       </div>
+    </div>
 
 
 
@@ -92,8 +92,8 @@
 
     </ul>
     <div class="">
-        <button type="button" name="button"  class="btn" id="buttonToday" > Hoje</button>
-        <button type="button" name="button" class="btn" id="buttonPrev" >Anterior</button>
+      <button type="button" name="button"  class="btn" id="buttonToday" > Hoje</button>
+      <button type="button" name="button" class="btn" id="buttonPrev" >Anterior</button>
       <button type="button" name="button"  class="btn" id="buttonNext">Próximo</button>
 
 
@@ -106,47 +106,90 @@
 
 
 
-<div id="calendarModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
+    <div id="calendarModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
 
-      <div class="modal-header">
-        <h4 id="modalTitle" class="modal-title" id="myLargeModalLabel">Large modal</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div id="modalBody" class="modal-body">
-        <form id="calendarForm" onsubmit="reservaController.adiciona(event)">
-          <div class="form-group">
-            <label for="exampleInputTitle">Assunto</label>
-            <input type="text" name="title"  class="form-control"   aria-describedby="emailHelp" placeholder="Enter email">
-
+          <div class="modal-header">
+            <h4 id="modalTitle" class="modal-title" id="myLargeModalLabel">Large modal</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
-          <div class="form-group">
-            <label for="exampleInputTitle">Início</label>
-            <input type="text" name="start"  class="form-control"   aria-describedby="emailHelp" placeholder="Enter email">
+          <div id="modalBody" class="modal-body">
+            <form id="calendarForm" onsubmit="reservaController.adiciona(event)">
+              <div class="form-group">
+                <label for="inputTitle">Assunto</label>
+                <input type="text" name="title"  class="form-control"   aria-describedby="emailHelp" placeholder="Assunto">
 
+              </div>
+              <div class="form-row">
+                <div class="form-group  col-md">
+                  <label for="inputStart">Início</label>
+                  <input type="text" name="start"  class="form-control"  >
+
+                </div>
+                <div class="form-group  col-md">
+                  <label for="inputEnd">Fim</label>
+                  <input type="text" name="end"  class="form-control"  >
+
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputTitle">Chave</label>
+                <input type="text" name="chave"  class="form-control"     placeholder="Chave">
+
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="inputSalaId" hidden>Sala ID</label>
+                  <input type="text" name="salaId"  class="form-control"    placeholder="Sala ID" hidden>
+
+                </div>
+                <div class="form-group col-md-7">
+                  <label for="inputSala">Sala</label>
+                  <input type="text" name="sala"  class="form-control"    placeholder="Sala">
+
+                </div>
+                <div class="form-group">
+                  <label for="inputCidadeId" hidden>Cidade ID</label>
+                  <input type="text" name="cidadeId"  class="form-control"    placeholder="Sala ID" hidden>
+
+                </div>
+                <div class="form-group col-md-5">
+                  <label for="inputCidade">Cidade</label>
+                  <input type="text" name="cidade"  class="form-control"    placeholder="Cidade">
+
+                </div>
+              </div>
+
+
+              <div class="form-row">
+                <div class="form-group col-md-7">
+                  <label for="inputContato">Contato</label>
+                  <input type="text" name="contato"  class="form-control"   aria-describedby="emailHelp" placeholder="Contato">
+
+                </div>
+                <div class="form-group col-md-5">
+                  <label for="inputTelefone">Telefone</label>
+                  <input type="text" name="fone"  class="form-control"   aria-describedby="emailHelp" placeholder="Telefone">
+
+                </div>
+
+              </div>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input  type="checkbox" class="form-check-input">
+                  Todo o Dia
+                </label>
+              </div>
+
+              <button type="submit"   class="btn btn-primary">Submit</button>
+            </form>
           </div>
-          <div class="form-group">
-            <label for="exampleInputTitle">Fim</label>
-            <input type="text" name="end"  class="form-control"   aria-describedby="emailHelp" placeholder="Enter email">
-
-          </div>
-
-          <div class="form-check">
-            <label class="form-check-label">
-              <input  type="checkbox" class="form-check-input">
-              Todo o Dia
-            </label>
-          </div>
-
-          <button type="submit"   class="btn btn-primary">Submit</button>
-        </form>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
 
 
@@ -154,8 +197,8 @@
 
   <script src="js/app/controllers/ReservaController.js"></script>
   <script>
-             let reservaController = new ReservaController();
-         </script>
+  let reservaController = new ReservaController();
+  </script>
 
   <script src="js/controladorDeSalas.js" ></script>
 
@@ -180,31 +223,31 @@
       $('#calendar_6').fullCalendar('prev');
 
 
+    });
+    $( "#buttonToday" ).click(function() {
+      $('#calendar_1').fullCalendar('today');
+      $('#calendar_2').fullCalendar('today');
+      $('#calendar_3').fullCalendar('today');
+      $('#calendar_4').fullCalendar('today');
+      $('#calendar_5').fullCalendar('today');
+      $('#calendar_7').fullCalendar('today');
+      $('#calendar_6').fullCalendar('today');
+
+
+    });
+
+    $( "#buttonNext" ).click(function() {
+      $('#calendar_1').fullCalendar('next');
+      $('#calendar_2').fullCalendar('next');
+      $('#calendar_3').fullCalendar('next');
+      $('#calendar_4').fullCalendar('next');
+      $('#calendar_5').fullCalendar('next');
+      $('#calendar_7').fullCalendar('next');
+      $('#calendar_6').fullCalendar('next');
+
+    });
+
   });
-  $( "#buttonToday" ).click(function() {
-    $('#calendar_1').fullCalendar('today');
-    $('#calendar_2').fullCalendar('today');
-    $('#calendar_3').fullCalendar('today');
-    $('#calendar_4').fullCalendar('today');
-    $('#calendar_5').fullCalendar('today');
-    $('#calendar_7').fullCalendar('today');
-    $('#calendar_6').fullCalendar('today');
-
-
-});
-
-  $( "#buttonNext" ).click(function() {
-    $('#calendar_1').fullCalendar('next');
-    $('#calendar_2').fullCalendar('next');
-    $('#calendar_3').fullCalendar('next');
-    $('#calendar_4').fullCalendar('next');
-    $('#calendar_5').fullCalendar('next');
-    $('#calendar_7').fullCalendar('next');
-    $('#calendar_6').fullCalendar('next');
-
-});
-
-});
   </script>
 
   <script src='js/lib/fullcalendar.min.js'></script>

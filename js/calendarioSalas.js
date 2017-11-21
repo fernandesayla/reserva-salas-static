@@ -1,19 +1,15 @@
-var calendarioSalas=(
+var calendarioSalas;
 
-
-  function caledario(id, eventos) {
-    console.log(JSON.stringify(eventos));
+calendarioSalas =  function caledario(id,sala,cidade,eventos) {
+    //console.log(JSON.stringify(eventos));
     'use strict'
 
-
-
-
-
     var initialLocaleCode = 'pt-BR';
+    var calendarid = '#calendar_'+id
+  /*  console.log(sala);
+    console.log(eventos);*/
 
-
-
-    $('#calendar_'+id).fullCalendar({
+    $(calendarid).fullCalendar({
       header: {
         right: '',
         center: 'title',
@@ -39,12 +35,21 @@ var calendarioSalas=(
 
       timeFormat: 'H(:mm)',
       locale: 'pt-br',
-      select: function(start, end, jsEvent, view ) {
+      select: function(start, end, jsEvent, view) {
 
+      /*  console.log(jsEvent);
+        console.log(view);
+        console.log(calendarid);
+        console.log(sala);
+        console.log(eventos);
 
-        
-        $('[name=start]', '#calendarForm').val(start);
-        $('[name=end]', '#calendarForm').val(end);
+        console.log(this);*/
+        $('[name=salaId]', '#calendarForm').val(id);
+        $('[name=cidade]', '#calendarForm').val(cidade);
+        $('[name=sala]', '#calendarForm').val(sala);
+        $('[name=title]', '#calendarForm').val(jsEvent.title);
+        $('[name=start]', '#calendarForm').val(moment(start).format("MM/DD/YYYY HH:mm"));
+        $('[name=end]', '#calendarForm').val(moment(end).format("MM/DD/YYYY HH:mm"));
         $('#eventUrl').attr('href',event.url);
         $('#calendarModal').modal();
 
@@ -63,7 +68,16 @@ var calendarioSalas=(
         //   $('#modalBody').html(calEvent.title + ' - ' + calEvent.start + ' - ' + calEvent.end);
         //   $('#modalBody').html(calEvent.title + ' - ' + calEvent.start + ' - ' + calEvent.end);
 
-        popula('#calendarForm', calEvent)
+      //  popula('#calendarForm', calEvent)$('[name=cidade]', '#calendarForm').val(cidade);
+    /*  console.log(calEvent);*/
+      $('[name=salaId]', '#calendarForm').val(calEvent.sala_id);
+      $('[name=sala]', '#calendarForm').val(calEvent.sala);
+      $('[name=cidade]', '#calendarForm').val(calEvent.cidade);
+      $('[name=cidade_id]', '#calendarForm').val(calEvent.cidade_id);
+      $('[name=title]', '#calendarForm').val(calEvent.title);
+      $('[name=start]', '#calendarForm').val(moment(calEvent.start).format("MM/DD/YYYY HH:mm"));
+      $('[name=end]', '#calendarForm').val(moment(calEvent.end).format("MM/DD/YYYY HH:mm"));
+
         $('#eventUrl').attr('href',event.url);
         $('#calendarModal').modal();
 
@@ -76,7 +90,10 @@ var calendarioSalas=(
         // change the border color just for fun
         //$(this).css('border-color', 'red');
 
-      },
+      },eventRender: function(event, element, view) {
+        //  element.attr("cidade",event.cidade).attr("sala",event.sala)
+
+    },
       events: eventos
       });
 
@@ -90,9 +107,4 @@ var calendarioSalas=(
 
       }
 
-    }
-
-
-
-
-  )()
+    }()

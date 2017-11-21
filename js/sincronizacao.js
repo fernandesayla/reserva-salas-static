@@ -1,7 +1,7 @@
 (function() {
   'use strict'
 
-  $.getJSON('http://localhost:3000/reservas',
+  $.getJSON('https://dicre2.intranet.bb.com.br/reservas',
   function(resposta){
 
 
@@ -22,13 +22,19 @@
       resposta.reservas.forEach(function(reservas){
 
 
+      //console.log(JSON.stringify(reservas));
 
         if (reservas.sala_id == sala.sala_id){
           evento =   {
               title:reservas.title,
                 id:reservas.id,
               start:reservas.start,
-              end:reservas.end
+              end:reservas.end,
+              sala: reservas.sala,
+              sala_id: reservas.sala_id,
+              cidade: reservas.cidade,
+              cidade_id: reservas.cidade_id
+
 
           };
            events.push(evento);
@@ -75,7 +81,7 @@
       cartao.sala=$(this).find('.cartao-conteudo').text()
       cartao.id=$(this).css('background')
       listaCartao.push(cartao)
-      console.log(cartao);
+    //  console.log(cartao);
     })
 
 
@@ -85,7 +91,7 @@
 
       $.ajax({
         data:mural,
-        url:'http://localhost:3000/reservas/salvar',
+        url:'https://dicre2.intranet.bb.com.br/reservas/salvar',
         method:'POST',
         success:function(resposta){
           console.log('Rolou!', resposta);
@@ -104,7 +110,7 @@
 
   $(document).on('sincroniza', function(event,  param1){
 
-  //  console.log(JSON.stringify(param1));
+  console.log(JSON.stringify(param1));
 
 
       var mural={reservas: param1,
@@ -112,7 +118,7 @@
 
       $.ajax({
         data:mural,
-        url:'http://localhost:3000/reservas/salvar',
+        url:'https://dicre2.intranet.bb.com.br/reservas/salvar',
         method:'POST',
         success:function(resposta){
           console.log('Rolou!', resposta);
